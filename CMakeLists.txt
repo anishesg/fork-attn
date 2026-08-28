@@ -16,6 +16,7 @@ add_library(fork_attn_lib STATIC
     src/shared_prefix_attn.cu
     src/branch_suffix_attn.cu
     src/fork_attn.cu
+    src/multi_level_fork_attn.cu
 )
 target_include_directories(fork_attn_lib PUBLIC src)
 target_link_libraries(fork_attn_lib CUDA::cublas)
@@ -25,3 +26,6 @@ target_link_libraries(test_correctness fork_attn_lib CUDA::cudart)
 
 add_executable(bench_latency tests/bench_latency.cu)
 target_link_libraries(bench_latency fork_attn_lib CUDA::cudart)
+
+add_executable(test_multi_level tests/test_multi_level.cu)
+target_link_libraries(test_multi_level fork_attn_lib CUDA::cudart)
